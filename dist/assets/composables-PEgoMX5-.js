@@ -1,1 +1,0 @@
-import{W as i,aW as r}from"./index-DDHm2j8i.js";import{i as n}from"./vue-vendor-J9QZ-CeD.js";function t(){const o=n(r,null);return o===null&&i("use-dialog","No outer <n-dialog-provider /> founded."),o}export{t as u};
