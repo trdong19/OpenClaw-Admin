@@ -32,6 +32,7 @@ const configForm = ref({
   AUTH_PASSWORD: '',
   OPENCLAW_WS_URL: '',
   OPENCLAW_AUTH_TOKEN: '',
+  OPENCLAW_AUTH_PASSWORD: '', // Gateway 密码认证
 })
 
 const themeOptions = computed(() => ([
@@ -69,6 +70,7 @@ async function loadConfig() {
         AUTH_PASSWORD: data.config.AUTH_PASSWORD || '',
         OPENCLAW_WS_URL: data.config.OPENCLAW_WS_URL || '',
         OPENCLAW_AUTH_TOKEN: data.config.OPENCLAW_AUTH_TOKEN || '',
+        OPENCLAW_AUTH_PASSWORD: data.config.OPENCLAW_AUTH_PASSWORD || '',
       }
     }
   } catch (e) {
@@ -152,6 +154,15 @@ onMounted(() => {
               type="password"
               show-password-on="click"
               :placeholder="t('pages.settings.openclawTokenPlaceholder')"
+            />
+          </NFormItem>
+          
+          <NFormItem :label="t('pages.settings.openclawPassword')">
+            <NInput
+              v-model:value="configForm.OPENCLAW_AUTH_PASSWORD"
+              type="password"
+              show-password-on="click"
+              :placeholder="t('pages.settings.openclawPasswordPlaceholder')"
             />
           </NFormItem>
           

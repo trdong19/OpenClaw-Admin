@@ -4,10 +4,11 @@ import EventEmitter from 'events'
 import { createHash, generateKeyPairSync, sign } from 'crypto'
 
 export class OpenClawGateway extends EventEmitter {
-  constructor(url, authToken) {
+  constructor(url, authToken, authPassword) {
     super()
     this.url = url
     this.authToken = authToken
+    this.authPassword = authPassword // Gateway 密码认证
     this.ws = null
     this.isConnected = false
     this.pendingCalls = new Map()
@@ -24,7 +25,9 @@ export class OpenClawGateway extends EventEmitter {
       this.ws.close()
     }
 
-    const wsUrl = this.authToken ? `${this.url}?auth=${this.authToken}` : this.url
+    // URL query 参数：token 优先，password 作为备选
+    const authParam = this.authToken || this.authPassword || ''
+    const wsUrl = authParam ? `${this.url}?auth=${authParam}` : this.url
     
     try {
       this.ws = new WebSocket(wsUrl)
@@ -96,6 +99,7 @@ export class OpenClawGateway extends EventEmitter {
       permissions: {},
       auth: {
         token: this.authToken || '',
+        password: this.authPassword || '', // 支持 password 认证
       },
       locale: 'zh-CN',
       userAgent: 'OpenClaw-Web-Backend/0.1.0',

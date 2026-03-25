@@ -1493,6 +1493,8 @@ export default {
     openclawUrlPlaceholder: 'ws://localhost:18789',
     openclawToken: 'OpenClaw Token',
     openclawTokenPlaceholder: '请输入 Token',
+    openclawPassword: 'OpenClaw 密码',
+    openclawPasswordPlaceholder: '请输入 Gateway 密码（与 Token 二选一）',
     loadFailed: '加载配置失败',
     save: '保存',
     saveSuccess: '配置已保存并生效',
