@@ -1,0 +1,52 @@
+name: 构建 ARM64 Docker 镜像
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出代码
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      # 2. 设置 QEMU 模拟器（用于构建 ARM64 镜像）
+      - name: 设置 QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # 3. 设置 Docker Buildx
+      - name: 设置 Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 4. 登录 Docker Hub（可选）
+      - name: 登录 Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 5. 构建并推送镜像
+      - name: 构建并推送镜像
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/arm64
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/openclaw-admin:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/openclaw-admin:arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # 6. 输出信息
+      - name: 输出镜像信息
+        run: |
+          echo "✅ 镜像构建成功！"
+          echo "镜像名称: ${{ secrets.DOCKERHUB_USERNAME }}/openclaw-admin:latest"
+          echo "架构: linux/arm64"
