@@ -35,7 +35,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 5. 构建并推送镜像到 GHCR（修复：使用小写仓库名称）
+      # 5. 构建并推送镜像到 GHCR（修复标签格式）
       - name: 构建并推送镜像
         uses: docker/build-push-action@v5
         with:
@@ -44,15 +44,15 @@ jobs:
           platforms: linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ toLower(github.repository) }}/openclaw-admin:latest
-            ghcr.io/${{ toLower(github.repository) }}/openclaw-admin:arm64
+            ghcr.io/${{ github.repository_owner }}/openclaw-admin:latest
+            ghcr.io/${{ github.repository_owner }}/openclaw-admin:arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      # 6. 输出镜像信息（修复：使用小写仓库名称）
+      # 6. 输出镜像信息
       - name: 输出镜像信息
         run: |
           echo "✅ 镜像构建成功！"
-          echo "镜像名称: ghcr.io/${{ toLower(github.repository) }}/openclaw-admin:latest"
+          echo "镜像名称: ghcr.io/${{ github.repository_owner }}/openclaw-admin:latest"
           echo "架构: linux/arm64"
-          echo "在 ARM64 设备上运行: docker run -d -p 3001:3001 ghcr.io/${{ toLower(github.repository) }}/openclaw-admin:latest"
+          echo "在 ARM64 设备上运行: docker run -d -p 3001:3001 ghcr.io/${{ github.repository_owner }}/openclaw-admin:latest"
