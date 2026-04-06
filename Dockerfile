@@ -46,7 +46,7 @@ RUN npm config set registry https://registry.npmmirror.com
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/server ./server
-
+COPY --from=builder /app/package.json ./package.json
 # 创建数据目录
 RUN mkdir -p /app/data
 
