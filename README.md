@@ -10,14 +10,23 @@
   <a href="#技术栈">技术栈</a> •
   <a href="#快速开始">快速开始</a> •
   <a href="#项目结构">项目结构</a> •
-  <a href="#开发指南">开发指南</a>
+  <a href="#开发指南">开发指南</a> •
+  <a href="README.en.md">English</a>
 </p>
 
----
+***
 
 ## 项目简介
 
 OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台，为 OpenClaw Gateway 提供完整的 Web 管理界面。通过直观的可视化操作，用户可以轻松管理 AI 智能体、会话、模型、频道、技能等核心功能。
+
+### 版本兼容性
+
+| OpenClaw Admin | OpenClaw Gateway | 状态    |
+| -------------- | ---------------- | ----- |
+| 0.2.6          | 2026.4.5         | ✅ 已验证 |
+
+> 💡 **提示**：建议使用最新版本的 OpenClaw Gateway 以获得最佳体验。如遇到连接问题，请检查 Gateway 版本是否兼容，或查看 [OpenClaw 更新日志](https://github.com/openclaw/openclaw/releases)。
 
 ### 核心亮点
 
@@ -28,20 +37,20 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 - 🌍 **国际化支持**：内置中英文双语支持，无缝切换
 - 🎨 **现代 UI**：基于 Naive UI 的响应式设计，支持亮色/暗色主题
 
----
+***
 
 ## 功能特性
 
 ### 登录 (Login)
 
-![登录](docs/images/登录.png)
+!\[登录]\(docs/images/登录.png null)
 
 - 用户名密码认证
 - 安全的会话管理
 
 ### 仪表盘 (Dashboard)
 
-![仪表盘](docs/images/仪表盘.png)
+!\[仪表盘]\(docs/images/仪表盘.png null)
 
 - 运行总览与关键指标展示
 - Token 使用趋势图表
@@ -51,7 +60,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 在线对话 (Chat)
 
-![在线对话](docs/images/在线对话.png)
+!\[在线对话]\(docs/images/在线对话.png null)
 
 - 实时聊天交互界面
 - 支持斜杠命令 (`/new`, `/skill`, `/model`, `/status`, `/subagents`)
@@ -61,7 +70,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 会话管理 (Sessions)
 
-![会话管理](docs/images/会话管理.png)
+!\[会话管理]\(docs/images/会话管理.png null)
 
 - 会话列表与详情查看
 - 会话创建、重置、删除
@@ -70,7 +79,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 记忆管理 (Memory)
 
-![记忆管理](docs/images/记忆管理.png)
+!\[记忆管理]\(docs/images/记忆管理.png null)
 
 - 智能体文档管理
 - 支持编辑 AGENTS、SOUL、IDENTITY、USER 等核心文档
@@ -79,7 +88,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 任务计划 (Cron)
 
-![计划任务](docs/images/计划任务.png)
+!\[计划任务]\(docs/images/计划任务.png null)
 
 - 定时任务创建与管理
 - 支持 Cron 表达式、固定间隔、指定时间
@@ -88,7 +97,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 模型管理 (Models)
 
-![模型管理](docs/images/模型管理.png)
+!\[模型管理]\(docs/images/模型管理.png null)
 
 - 多模型渠道配置
 - API Key 安全管理（脱敏显示）
@@ -98,7 +107,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 频道管理 (Channels)
 
-![频道管理](docs/images/频道管理.png)
+!\[频道管理]\(docs/images/频道管理.png null)
 
 - QQ、飞书、钉钉、企业微信渠道配置
 - 渠道状态监控
@@ -107,7 +116,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 技能管理 (Skills)
 
-![技能管理](docs/images/技能管理.png)
+!\[技能管理]\(docs/images/技能管理.png null)
 
 - 技能插件列表
 - 内置/用户技能分类
@@ -116,7 +125,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 多智能体 (Agents)
 
-![多智能体](docs/images/多智能体.png)
+!\[多智能体]\(docs/images/多智能体.png null)
 
 - 智能体创建与管理
 - 身份、模型、工具权限配置
@@ -125,8 +134,8 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 智能体工坊 (Office)
 
-![智能体工坊-1](docs/images/智能体工坊-1.png)
-![智能体工坊-2](docs/images/智能体工坊-2.png)
+!\[智能体工坊-1]\(docs/images/智能体工坊-1.png null)
+!\[智能体工坊-2]\(docs/images/智能体工坊-2.png null)
 
 - 多智能体协作空间
 - 场景创建向导
@@ -136,7 +145,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 虚拟公司 (MyWorld)
 
-![虚拟公司](docs/images/虚拟公司.png)
+!\[虚拟公司]\(docs/images/虚拟公司.png null)
 
 - 可视化办公场景
 - 角色移动与交互
@@ -145,7 +154,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 远程终端 (Terminal)
 
-![远程终端](docs/images/远程终端.png)
+!\[远程终端]\(docs/images/远程终端.png null)
 
 - SSE 协议远程终端
 - 多节点支持
@@ -154,7 +163,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 远程桌面 (Remote Desktop)
 
-![远程桌面](docs/images/远程桌面.png)
+!\[远程桌面]\(docs/images/远程桌面.png null)
 
 - Linux/Windows 远程桌面
 - 实时画面传输
@@ -163,7 +172,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 文件浏览器 (Files)
 
-![文件浏览器](docs/images/文件浏览器.png)
+!\[文件浏览器]\(docs/images/文件浏览器.png null)
 
 - 工作区文件浏览
 - 文件编辑与预览
@@ -172,7 +181,7 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 系统监控 (System)
 
-![系统监视器](docs/images/系统监视器.png)
+!\[系统监视器]\(docs/images/系统监视器.png null)
 
 - CPU、内存、磁盘使用率
 - 网络连接状态
@@ -181,61 +190,61 @@ OpenClaw Admin 是一个基于 Vue 3 构建的现代化 AI 智能体管理平台
 
 ### 系统设置 (Settings)
 
-![系统设置](docs/images/系统设置.png)
+!\[系统设置]\(docs/images/系统设置.png null)
 
 - 连接配置管理
 - 外观主题设置
 - 环境变量配置
 
----
+***
 
 ## 技术栈
 
 ### 前端框架
 
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| Vue | 3.5.x | 渐进式 JavaScript 框架 |
-| Vue Router | 4.x | 官方路由管理器 |
-| Pinia | 3.x | 状态管理库 |
-| TypeScript | 5.x | 类型安全的 JavaScript 超集 |
-| Vite | 7.x | 下一代前端构建工具 |
+| 技术         | 版本    | 说明                  |
+| ---------- | ----- | ------------------- |
+| Vue        | 3.5.x | 渐进式 JavaScript 框架   |
+| Vue Router | 4.x   | 官方路由管理器             |
+| Pinia      | 3.x   | 状态管理库               |
+| TypeScript | 5.x   | 类型安全的 JavaScript 超集 |
+| Vite       | 7.x   | 下一代前端构建工具           |
 
 ### UI 组件库
 
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| Naive UI | 2.43.x | Vue 3 组件库 |
-| @vicons/ionicons5 | 0.13.x | 图标库 |
-| @fortawesome | 7.x | Font Awesome 图标 |
+| 技术                | 版本     | 说明              |
+| ----------------- | ------ | --------------- |
+| Naive UI          | 2.43.x | Vue 3 组件库       |
+| @vicons/ionicons5 | 0.13.x | 图标库             |
+| @fortawesome      | 7.x    | Font Awesome 图标 |
 
 ### 通信与数据
 
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| WebSocket | - | 实时双向通信 |
-| SSE | - | 服务器推送事件 |
+| 技术          | 版本   | 说明           |
+| ----------- | ---- | ------------ |
+| WebSocket   | -    | 实时双向通信       |
+| SSE         | -    | 服务器推送事件      |
 | markdown-it | 14.x | Markdown 解析器 |
 
 ### 后端服务
 
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| Express | 5.x | Node.js Web 框架 |
-| ws | 8.x | WebSocket 实现 |
-| better-sqlite3 | 12.x | SQLite 数据库 |
-| node-pty | 1.x | 伪终端支持 |
-| ssh2 | 1.x | SSH 客户端 |
+| 技术             | 版本   | 说明             |
+| -------------- | ---- | -------------- |
+| Express        | 5.x  | Node.js Web 框架 |
+| ws             | 8.x  | WebSocket 实现   |
+| better-sqlite3 | 12.x | SQLite 数据库     |
+| node-pty       | 1.x  | 伪终端支持          |
+| ssh2           | 1.x  | SSH 客户端        |
 
 ### 终端相关
 
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| @xterm/xterm | 6.x | 终端模拟器 |
-| @xterm/addon-fit | 0.11.x | 终端自适应 |
-| @xterm/addon-web-links | 0.12.x | 链接支持 |
+| 技术                     | 版本     | 说明    |
+| ---------------------- | ------ | ----- |
+| @xterm/xterm           | 6.x    | 终端模拟器 |
+| @xterm/addon-fit       | 0.11.x | 终端自适应 |
+| @xterm/addon-web-links | 0.12.x | 链接支持  |
 
----
+***
 
 ## 快速开始
 
@@ -290,7 +299,7 @@ npm run build
 npm run preview
 ```
 
----
+***
 
 ## 项目结构
 
@@ -392,7 +401,7 @@ openclaw-admin/
 └── .env                        # 本地环境变量（由 .env.example 复制）
 ```
 
----
+***
 
 ## 开发指南
 
@@ -404,12 +413,12 @@ openclaw-admin/
 
 ### 命名约定
 
-| 类型 | 命名规范 | 示例 |
-|------|----------|------|
-| 组件 | PascalCase.vue | `ConnectionStatus.vue` |
-| 路由页面 | *Page.vue | `SessionsPage.vue` |
-| Store | camelCase.ts | `session.ts` |
-| Composable | use*.ts | `useTheme.ts` |
+| 类型         | 命名规范           | 示例                     |
+| ---------- | -------------- | ---------------------- |
+| 组件         | PascalCase.vue | `ConnectionStatus.vue` |
+| 路由页面       | \*Page.vue     | `SessionsPage.vue`     |
+| Store      | camelCase.ts   | `session.ts`           |
+| Composable | use\*.ts       | `useTheme.ts`          |
 
 ### 构建验证
 
@@ -445,7 +454,7 @@ MEDIA_DIR=
 # OPENCLAW_HOME=/path/to/.openclaw
 ```
 
----
+***
 
 ## API 参考
 
@@ -505,7 +514,7 @@ MEDIA_DIR=
 - `system-presence` - 实例状态
 - `logs.tail` - 日志查看
 
----
+***
 
 ## 安全说明
 
@@ -513,19 +522,19 @@ MEDIA_DIR=
 - 凭证字段采用掩码显示，不回显明文
 - API Key 仅在输入新值时提交，未输入则保持原值
 
----
+***
 
 ## 许可证
 
 [MIT License](LICENSE)
 
----
+***
 
 ## 贡献指南
 
 欢迎提交 Issue 和 Pull Request！
 
-**GitHub 仓库**: [https://github.com/itq5/OpenClaw-Admin](https://github.com/itq5/OpenClaw-Admin)
+**GitHub 仓库**: <https://github.com/itq5/OpenClaw-Admin>
 
 1. Fork 本仓库
 2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
@@ -533,21 +542,21 @@ MEDIA_DIR=
 4. 推送到分支 (`git push origin feature/amazing-feature`)
 5. 创建 Pull Request
 
----
+***
 
 ## 联系方式
 
 ### 作者邮箱
 
-📧 [root@itq5.com](mailto:root@itq5.com)
+📧 <root@itq5.com>
 
 ### 微信交流群
 
 欢迎加入微信交流群，获取最新动态和技术支持：
 
-![微信群](docs/images/微信群.png)
+!\[微信群]\(docs/images/微信群.png null)
 
----
+***
 
 <p align="center">
   Made with ❤️ by <a href="https://github.com/itq5/OpenClaw-Admin">OpenClaw Admin</a> Team
