@@ -25,11 +25,12 @@ function loadEnvConfig() {
       PORT: 3001,
       OPENCLAW_WS_URL: 'ws://localhost:18789',
       OPENCLAW_AUTH_TOKEN: '',
-      OPENCLAW_AUTH_PASSWORD: '', // Gateway 密码认证
+      OPENCLAW_AUTH_PASSWORD: '',
       DEV_FRONTEND_URL: 'http://localhost:3000',
       AUTH_USERNAME: '',
       AUTH_PASSWORD: '',
       MEDIA_DIR: '',
+      LOG_LEVEL: 'INFO',
     }
   }
   const content = readFileSync(envPath, 'utf-8')
@@ -43,10 +44,19 @@ function loadEnvConfig() {
     AUTH_USERNAME: parsed.AUTH_USERNAME || '',
     AUTH_PASSWORD: parsed.AUTH_PASSWORD || '',
     MEDIA_DIR: parsed.MEDIA_DIR || '',
+    LOG_LEVEL: parsed.LOG_LEVEL || 'INFO',
   }
 }
 
 let envConfig = loadEnvConfig()
+
+const isDebug = envConfig.LOG_LEVEL === 'DEBUG'
+
+function debug(...args) {
+  if (isDebug) {
+    console.log('[DEBUG]', ...args)
+  }
+}
 
 const app = express()
 const server = createServer(app)
@@ -59,7 +69,7 @@ const sessions = new Map()
 app.use(cors())
 app.use(express.json())
 
-let gateway = new OpenClawGateway(envConfig.OPENCLAW_WS_URL, envConfig.OPENCLAW_AUTH_TOKEN, envConfig.OPENCLAW_AUTH_PASSWORD)
+let gateway = new OpenClawGateway(envConfig.OPENCLAW_WS_URL, envConfig.OPENCLAW_AUTH_TOKEN, envConfig.OPENCLAW_AUTH_PASSWORD, envConfig.LOG_LEVEL)
 
 const sseClients = new Map()
 
@@ -74,6 +84,7 @@ gateway.on('connected', () => {
 })
 
 gateway.on('version', (info) => {
+  debug('Gateway version info:', info)
   updateInfo = info
   gatewayVersion = info.currentVersion
   broadcastSSE({ type: 'gatewayState', state: 'connected', version: info.currentVersion, updateAvailable: info })
@@ -87,16 +98,20 @@ gateway.on('disconnected', () => {
 
 gateway.on('error', (err) => {
   console.error('[Gateway] Error:', err.message)
+  debug('Error stack:', err.stack)
 })
 
 gateway.on('event', (event, payload) => {
+  debug('Gateway event:', event, 'payload keys:', payload ? Object.keys(payload) : null)
   broadcastSSE({ type: 'event', event, payload })
 })
 
 gateway.on('stateChange', (state) => {
+  debug('Gateway state changed to:', state)
   broadcastSSE({ type: 'gatewayState', state })
 })
 
+debug('Connecting to Gateway at:', envConfig.OPENCLAW_WS_URL)
 gateway.connect()
 
 function broadcastSSE(data) {
@@ -1035,6 +1050,8 @@ app.post('/api/rpc', authMiddleware, async (req, res) => {
 })
 
 app.get('/api/events', authMiddleware, (req, res) => {
+  debug('[SSE] New client connecting, auth check passed')
+  
   res.setHeader('Content-Type', 'text/event-stream')
   res.setHeader('Cache-Control', 'no-cache')
   res.setHeader('Connection', 'keep-alive')
@@ -1043,10 +1060,12 @@ app.get('/api/events', authMiddleware, (req, res) => {
 
   const clientId = randomUUID()
   sseClients.set(clientId, { res, subscriptions: new Set(['*']) })
+  debug('[SSE] Client connected:', clientId, 'total clients:', sseClients.size)
 
   res.write(`data: ${JSON.stringify({ type: 'connected', clientId })}\n\n`)
 
   const initialState = gateway.isConnected ? 'connected' : 'disconnected'
+  debug('[SSE] Sending initial state to client:', clientId, 'state:', initialState, 'gatewayVersion:', gatewayVersion)
   res.write(`data: ${JSON.stringify({ 
     type: 'gatewayState', 
     state: initialState,
@@ -1056,6 +1075,7 @@ app.get('/api/events', authMiddleware, (req, res) => {
 
   req.on('close', () => {
     sseClients.delete(clientId)
+    debug('[SSE] Client disconnected:', clientId, 'remaining clients:', sseClients.size)
   })
 })
 
